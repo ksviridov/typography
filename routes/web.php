@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/orders/list', 'OrderController@index')->name('orders_list');
+
+    Route::group(['middleware' => ['role:manager']], function () {
+        Route::get('/orders/add', 'OrderController@add')->name('add_order');
+
+        Route::get('/orders/edit/{id}', 'OrderController@edit')->name('edit_order');
+        Route::post('/orders/edit/{id}', 'OrderController@save')->name('save_order');
+
+        Route::post('/orders/create', 'OrderController@create')->name('create_order');
+    });
+});
 
 
-Route::get('/orders/add', 'OrderController@add')->name('add_order');
-Route::get('/orders/create', 'OrderController@create')->name('create_order');

@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <form method="post" action="{{route('create_order')}}">
+                <form method="post" action="{{route('save_order', ['id' => $order->id])}}">
                     @csrf
 
                     Добавить заказ
@@ -15,6 +15,7 @@
                     <label>
                         Priority
                         <select name="priority" >
+                            <option value="{{$order->priority}}">{{(int) $order->priority}}</option>
                             <option value="01">1</option>
                             <option value="02">2</option>
                             <option value="03">3</option>
@@ -28,6 +29,7 @@
                     <label>
                         Status
                         <select name="status" >
+                            <option>{{$order->status}}</option>
                             <option>Принят от клиента</option>
                             <option>Вёрстка</option>
                             <option>Вёрстка завершена</option>
@@ -43,7 +45,7 @@
 
                     <label>
                         Wishes
-                        <textarea name="wishes"></textarea>
+                        <textarea name="wishes">{{$order->wishes}}</textarea>
                     </label>
 
                     <br>
