@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/orders/add', 'OrderController@add')->name('add_order');
+Route::get('/orders/create', 'OrderController@create')->name('create_order');
