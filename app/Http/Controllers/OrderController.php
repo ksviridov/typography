@@ -11,7 +11,13 @@ class OrderController extends Controller
     {
         $orders = Order::all();
 
-        return view('orders.list', compact('orders'));
+        $roles = [
+            'manager' => 'Менеджер',
+            'verstalshik' => 'Верстальщик',
+            'perepletchik' => 'Переплетчик',
+        ];
+
+        return view('orders.list', compact('orders', 'roles'));
     }
 
     public function create(Request $request)
