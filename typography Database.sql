@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 23 2021 г., 11:17
+-- Время создания: Дек 23 2021 г., 12:42
 -- Версия сервера: 8.0.15
 -- Версия PHP: 7.3.9
 
@@ -57,7 +57,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2021_12_23_070510_create_permission_tables', 2);
+(4, '2021_12_23_070510_create_permission_tables', 2),
+(5, '2021_12_23_080431_create_orders_table', 3);
 
 -- --------------------------------------------------------
 
@@ -91,6 +92,34 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 1),
 (3, 'App\\User', 2),
 (2, 'App\\User', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priority` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `wishes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `number`, `status`, `priority`, `wishes`, `created_at`, `updated_at`) VALUES
+(1, '2312-01-1', 'Принят от клиента', '01', 'sdfsdfsdf', '2021-12-23 06:00:27', '2021-12-23 06:00:27'),
+(2, '2312-02-2', 'Вёрстка', '02', 'lol', '2021-12-23 06:03:49', '2021-12-23 06:28:01'),
+(3, '2312-03-3', 'Принят от клиента', '03', 'asdfasdf', '2021-12-23 06:04:47', '2021-12-23 06:04:48'),
+(4, '2312-02-4', 'Принят от клиента', '02', 'afsdf', '2021-12-23 06:18:46', '2021-12-23 06:18:46'),
+(5, '2312-01-5', 'Принят от клиента', '01', 'afdsdf', '2021-12-23 06:19:01', '2021-12-23 06:19:01'),
+(6, '2312-01-6', 'Вёрстка завершена', '01', 'sfsadf', '2021-12-23 06:21:50', '2021-12-23 06:21:50');
 
 -- --------------------------------------------------------
 
@@ -209,6 +238,12 @@ ALTER TABLE `model_has_roles`
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -256,7 +291,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`

@@ -8,8 +8,13 @@
 * Почта:  pbabak@sfedu.ru  Пароль: 123456qwerty Роль: Верстальщик
 * Почта: svladimirov@sfedu.ru  Пароль: qwerty123456 Роль: Переплетчик
 
-###Install 
-composer i
-env
-php artisan serve
-php artisan serve
+### Install 
+* composer i
+* Сделать .env файл из .env.example
+* Создать базу с именем laravel и импортировать базу данных из файла typography.sql
+* php artisan key:generate
+* либо создать пустую базу с помощью php artisan migrate
+* php artisan serve
+
+МОДУЛЬ 2
+ОБЯЗАТЕЛЬНО ИНТЕРНЕТ ДЛЯ РАБОТЫ ZXING
