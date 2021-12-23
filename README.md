@@ -11,5 +11,5 @@
 ###Install 
 composer i
 env
-php artsan serve
+php artisan serve
 php artisan serve
